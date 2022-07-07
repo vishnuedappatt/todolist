@@ -4,6 +4,11 @@ import {useState} from 'react'
 function App() {
   const [toDos,setToDos]=useState([]) 
   const [toDo,setToDo]=useState('')
+  const deleteToDo=(index)=>{
+    var oldlist=toDos;
+    oldlist.splice(index,1);
+    toDos=oldlist;
+  }
   return (
     <div className="app">
     <div className="mainHeading">
@@ -19,7 +24,7 @@ function App() {
     </div>
     <div className="todos">
     {
-      toDos.map((mobj)=>{
+      toDos.map((mobj,index)=>{
 
      return(
       <div className="todo">
@@ -37,10 +42,7 @@ function App() {
           <h4 className="world">{mobj.text}</h4>
         </div>
         <div className="right">
-          {/* <i onClick={setToDos.filter(obj=>
-            if (obj===mobj.id){
-              obj.text.delete
-            }return null;)} className="fas fa-times"></i> */}
+          <i  onClick={()=>{deleteToDo(index)}} className="fas fa-times"></i>
         </div>
       </div>)
        })
